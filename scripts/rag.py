@@ -1,6 +1,6 @@
 import ollama
 import re
-from retrieval import retrieve_info
+from .retrieval import retrieve_info
 
 def clean_deepseek_output(text):
     # Remove the <think>...</think> blocks to show only the final answer
