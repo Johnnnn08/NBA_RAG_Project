@@ -33,16 +33,16 @@ df = df.drop(columns=['firstName', 'lastName'])
 # Generate the gameSummary column
 df['gameDateTimeEst'] = df['gameDateTimeEst'].dt.date
 df['gameSummary'] = (
-    'On ' + df['gameDateTimeEst'].astype(str) + ', ' + 
-    df['name'] + ' delivered an impressive performance, registering ' + 
-    df['points'].astype(str) + ' points, ' + 
-    df['reboundsTotal'].astype(str) + ' rebounds, and ' + 
-    df['assists'].astype(str) + ' assists, along with ' + 
-    df['steals'].astype(str) + ' steals, ' + 
-    df['blocks'].astype(str) + ' blocks, and ' + 
-    df['turnovers'].astype(str) + ' turnovers, in a game against ' + 
-    df['opponentteamName'] + ', ' + 
-    np.where(df['win'] == 1, 'winning', 'losing') + ' the game.'
+    'Player: ' + df['name'] + '. ' +
+    'Team: ' + df['playerteamName'] + '. ' +
+    'Opponent: ' + df['opponentteamName'] + '. ' +
+    'Date: ' + df['gameDateTimeEst'].astype(str) + '. ' +
+    'Stats: ' + df['points'].astype(str) + ' PTS, ' + 
+    df['reboundsTotal'].astype(str) + ' REB, ' + 
+    df['assists'].astype(str) + ' AST. ' +
+    'Other: ' + df['steals'].astype(str) + ' STL, ' + 
+    df['blocks'].astype(str) + ' BLK. ' +
+    'Outcome: ' + np.where(df['win'] == 1, 'Win', 'Loss') + '.'
 )
 print(df.loc[0, 'gameSummary']) 
 
@@ -78,6 +78,13 @@ team_abbreviations = {
 }
 df['matchup'] = df['playerteamCity'].map(team_abbreviations) + " vs. " + df['opponentteamCity'].map(team_abbreviations)
 df = df.drop(columns=['playerteamCity', 'playerteamName', 'opponentteamCity', 'opponentteamName','reboundsTotal', 'win', 'assists', 'steals', 'blocks', 'turnovers', 'points'])
+
+
+df['searchText'] = (
+    df['name'] + " | " + 
+    df['gameDateTimeEst'].astype(str) + " | " + 
+    df['matchup']
+)
 print(df.columns)
 
 # Export the cleaned DataFrame to a new CSV file

@@ -20,7 +20,7 @@ def embed_game_logs():
         while True:
             # Fetch a batch of rows where embedding is NULL
             cur.execute(
-                "SELECT id, stats_summary FROM nba_game_logs WHERE embedding IS NULL LIMIT %s;",
+                "SELECT id, search_text FROM nba_game_logs WHERE embedding IS NULL LIMIT %s;",
                 (BATCH_SIZE,)
             )
             rows = cur.fetchall()
@@ -36,7 +36,7 @@ def embed_game_logs():
                     # Generate embedding using Ollama
                     response = ollama.embeddings(
                         model='nomic-embed-text',
-                        prompt=text
+                        prompt=f"{text}"
                     )
                     embedding = response['embedding']
 

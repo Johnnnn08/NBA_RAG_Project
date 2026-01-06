@@ -15,7 +15,7 @@ def ingest_data():
         csv_path = "../data/cleaned_player_statistics.csv"
         df = pd.read_csv(csv_path)
         
-        data_to_insert = df[['gameDateTimeEst', 'matchup', 'name', 'gameSummary']].values.tolist()
+        data_to_insert = df[['gameDateTimeEst', 'matchup', 'name', 'gameSummary', 'searchText']].values.tolist()
 
         # Connect to the database
         conn = psycopg2.connect(**DB_CONFIG)
@@ -23,7 +23,7 @@ def ingest_data():
         
         # Batch Insert
         insert_query = """
-            INSERT INTO nba_game_logs (game_date, matchup, player_name, stats_summary)
+            INSERT INTO nba_game_logs (game_date, matchup, player_name, stats_summary, search_text)
             VALUES %s
         """
         

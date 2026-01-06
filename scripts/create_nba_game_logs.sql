@@ -5,5 +5,6 @@ CREATE TABLE IF NOT EXISTS nba_game_logs (
   matchup text NOT NULL,
   player_name text NOT NULL,
   stats_summary text NOT NULL,
+  search_text TEXT,
   embedding vector(768)
 );
