@@ -1,3 +1,6 @@
+📊 Performance Notes
+By lead-filtering search text to "Player + Date + Matchup," retrieval "blind spots" were eliminated, ensuring the system correctly identifies games even when querying generic terms like "last night" or "latest matchup."
+
 # Project Setup Guide
 
 This guide provides all the necessary steps to set up your PostgreSQL 16 database and configure the `pgvector` extension for your project.

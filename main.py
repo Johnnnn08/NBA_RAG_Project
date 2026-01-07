@@ -1,4 +1,4 @@
-from scripts.rag import generate_answer
+from scripts.rag_with_FT import generate_answer
 import sys
 
 def start_chat():

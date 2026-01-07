@@ -37,7 +37,7 @@ def retrieve_info(user_question):
 
 # --- Test It ---
 if __name__ == "__main__":
-    question = "How did LeBron James play on 2025-10-15 against the Mavs"
+    question = "How did lebron play in 2026? what are some of his stats"
     context = retrieve_info(question)
     
     print(f"\nQuestion: {question}")
